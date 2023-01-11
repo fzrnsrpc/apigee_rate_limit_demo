@@ -1,0 +1,38 @@
+
+
+# Example 1
+<SpikeArrest name="Spike-Arrest-1">
+    <Rate>2pm</Rate>
+    <UseEffectiveCount>false</UseEffectiveCount>
+</SpikeArrest>
+
+# Example 2
+<SpikeArrest name="Spike-Arrest-1">
+    <Rate>2pm</Rate>
+    <UseEffectiveCount>true</UseEffectiveCount>
+</SpikeArrest>
+
+#Example 3
+#SpikeArrest XML
+<SpikeArrest name="Spike-Arrest-1">
+    <Rate>2pm</Rate>
+    <Identifier ref="client_id"/>
+    <UseEffectiveCount>true</UseEffectiveCount>
+</SpikeArrest>
+
+#Verify API Key XML
+<VerifyAPIKey continueOnError="false" enabled="true" name="Verify-API-Key-1">
+    <DisplayName>Verify API Key-1</DisplayName>
+    <Properties/>
+    <APIKey ref="request.queryparam.apikey"/>
+</VerifyAPIKey>
+
+#Example 4
+#SpikeArrest XML
+<SpikeArrest name="Spike-Arrest-1">
+    <Rate ref="request.header.runtime_rate"/>
+    <Identifier ref="client_id"/>
+    <UseEffectiveCount>true</UseEffectiveCount>
+</SpikeArrest>
+
+#Verify API Key XML: Same with Example 3

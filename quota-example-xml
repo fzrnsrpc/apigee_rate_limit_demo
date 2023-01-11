@@ -1,0 +1,90 @@
+
+
+# Example 1
+<Quota name="QuotaPolicy">
+    <Interval>1</Interval>
+    <TimeUnit>minute</TimeUnit>
+    <Allow count="5"/>
+</Quota>
+
+#Example 2
+<Quota name="QuotaPolicy">
+    <Interval>1</Interval>
+    <TimeUnit>minute</TimeUnit>
+    <Allow count="5"/>
+    <Distributed>true</Distributed>
+    <Synchronous>true</Synchronous>
+</Quota>
+
+＃Example 3
+# Quota Policy
+<Quota name="QuotaPolicy">
+    <UseQuotaConfigInAPIProduct stepName="Verify-API-Key-1">
+        <DefaultConfig>
+            <Allow>5</Allow>
+            <Interval>1</Interval>
+            <TimeUnit>minute</TimeUnit>
+        </DefaultConfig>
+    </UseQuotaConfigInAPIProduct>
+    <Identifier ref="client_id"/>
+    <Distributed>true</Distributed>
+    <Synchronous>true</Synchronous>
+</Quota>
+
+#VerifyAPI Key Policy
+<VerifyAPIKey continueOnError="false" enabled="true" name="Verify-API-Key-1">
+    <DisplayName>Verify API Key-1</DisplayName>
+    <Properties/>
+    <APIKey ref="request.queryparam.apikey"/>
+</VerifyAPIKey>
+
+#Example 4
+<Quota name="QuotaPolicy">
+    <Interval>1</Interval>
+    <TimeUnit>minute</TimeUnit>
+    <Allow>
+        <Class ref="request.header.developer_class">
+            <Allow class="gold" count="10"/>
+            <Allow class="silver" count="5"/>
+        </Class>
+    </Allow>
+    <Distributed>true</Distributed>
+    <Synchronous>true</Synchronous>
+</Quota>
+
+
+#Example 5
+<Quota name="QuotaPolicy" type="calendar">
+    <UseQuotaConfigInAPIProduct stepName="Verify-API-Key-1">
+        <DefaultConfig>
+            <Allow>5</Allow>
+            <Interval>5</Interval>
+            <TimeUnit>minute</TimeUnit>
+        </DefaultConfig>
+    </UseQuotaConfigInAPIProduct>
+    <Identifier ref="client_id"/>
+    <StartTime>2022-12-22 01:37:00</StartTime>
+    <Distributed>true</Distributed>
+    <Synchronous>true</Synchronous>
+</Quota>
+
+# Quota and Spike arrest Example
+# Quota Policy
+<Quota name="QuotaPolicy">
+    <UseQuotaConfigInAPIProduct stepName="Verify-API-Key-1">
+        <DefaultConfig>
+            <Allow>5</Allow>
+            <Interval>1</Interval>
+            <TimeUnit>minute</TimeUnit>
+        </DefaultConfig>
+    </UseQuotaConfigInAPIProduct>
+    <Identifier ref="client_id"/>
+    <Distributed>true</Distributed>
+    <Synchronous>true</Synchronous>
+</Quota>
+
+#SpikeArrest policy
+<SpikeArrest name="Spike-Arrest-1">
+    <Rate>1ps</Rate>
+    <UseEffectiveCount>true</UseEffectiveCount>
+</SpikeArrest>
